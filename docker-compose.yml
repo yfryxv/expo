@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: empleos_inclusivos
+      MYSQL_USER: empleos_user
+      MYSQL_PASSWORD: empleos_pass
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD-SHELL', 'mysqladmin ping -h localhost -u $$MYSQL_USER --password=$$MYSQL_PASSWORD']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      JWT_SECRET: super-secreto-cambia-esto
+      JWT_EXPIRES_IN: 4h
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: empleos_user
+      DB_PASSWORD: empleos_pass
+      DB_NAME: empleos_inclusivos
+    ports:
+      - '3000:3000'
+    command: npm run dev
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+volumes:
+  db_data:
+
+

@@ -1,0 +1,413 @@
+{
+  "info": {
+    "_postman_id": "d6be8cf5-5bbd-4a2f-9a94-emplo-collection",
+    "name": "API Empleos Inclusivos",
+    "description": "Colección Postman para probar la API REST de empleos inclusivos.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "Registro Empresa",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Empresa Inclusiva\",\n  \"email\": \"empresa@example.com\",\n  \"password\": \"Secreta123\",\n  \"role\": \"empresa\",\n  \"companyName\": \"Mi Empresa Accesible\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/usuarios/registro",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "usuarios",
+                "registro"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Empresa",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"empresa@example.com\",\n  \"password\": \"Secreta123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/usuarios/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "usuarios",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Registro Candidato",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Candidato Inclusivo\",\n  \"email\": \"candidato@example.com\",\n  \"password\": \"Secreta123\",\n  \"role\": \"candidato\",\n  \"profileSummary\": \"Desarrollador con interés en proyectos inclusivos\",\n  \"skills\": [\"node.js\", \"mysql\", \"accesibilidad\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/usuarios/registro",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "usuarios",
+                "registro"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Candidato",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"candidato@example.com\",\n  \"password\": \"Secreta123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/usuarios/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "usuarios",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Perfil",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_empresa}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/usuarios/perfil",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "usuarios",
+                "perfil"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ofertas",
+      "item": [
+        {
+          "name": "Crear Oferta (Empresa)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_empresa}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Desarrollador Backend\",\n  \"description\": \"Trabaja en plataforma inclusiva\",\n  \"location\": \"CDMX\",\n  \"salaryRange\": \"$30,000 - $40,000\",\n  \"employmentType\": \"Tiempo completo\",\n  \"requirements\": [\"node.js\", \"mysql\"],\n  \"accessibilityFeatures\": [\"oficina accesible\", \"horario flexible\"],\n  \"remoteAvailable\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/ofertas",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ofertas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Ofertas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ofertas",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ofertas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalle de Oferta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ofertas/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ofertas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Oferta",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_empresa}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salaryRange\": \"$35,000 - $45,000\",\n  \"remoteAvailable\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/ofertas/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ofertas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Oferta",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_empresa}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/ofertas/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ofertas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Postulaciones",
+      "item": [
+        {
+          "name": "Crear Postulación (Candidato)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_candidato}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offerId\": 1,\n  \"coverLetter\": \"Estoy entusiasmado por participar en este proyecto.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/postulaciones",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "postulaciones"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mis Postulaciones (Candidato)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_candidato}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/postulaciones/mis",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "postulaciones",
+                "mis"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Postulantes por Oferta (Empresa)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_empresa}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/postulaciones/oferta/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "postulaciones",
+                "oferta",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Recomendaciones",
+      "item": [
+        {
+          "name": "Obtener Recomendaciones (Candidato)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token_candidato}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/recomendaciones",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "recomendaciones"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/api"
+    },
+    {
+      "key": "token_empresa",
+      "value": ""
+    },
+    {
+      "key": "token_candidato",
+      "value": ""
+    }
+  ]
+}
+
+
